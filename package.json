@@ -1,0 +1,51 @@
+{
+  "name": "icon.font",
+  "version": "1.0.0",
+  "description": "Generates webfonts from individual svg icons with persistent config and mapping previews",
+  "main": "index.js",
+  "bin": {
+    "icon.font": "./bin"
+  },
+  "mocha_opts": "-u tdd --compilers coffee:coffee-script/register --slow 3000 --timeout 8000",
+  "scripts": {
+    "build": "npm run compile && npm run prependbin && npm run makeexec",
+    "compile": "npm run compile:module && npm run compile:bin",
+    "compile:module": "foreach -g 'lib/*.coffee' -x 'cat {{path}} | coffee -c -s -b > forCoverage/{{name}}.js' && cp -r lib/templates forCoverage/templates",
+    "compile:bin": "coffee -o ./forCoverage -c -b lib/cli.coffee",
+    "prependbin": "echo '#!/usr/bin/env node' | cat - forCoverage/cli.js > forCoverage/bin && rm -rf forCoverage/cli.js",
+    "makeexec": "chmod +x forCoverage/bin",
+    "coverage": "npm run build && npm run coverage:run && npm run coverage:badge",
+    "coverage:run": "cd test && forCoverage=true istanbul cover --dir coverage ../node_modules/mocha/bin/_mocha -- $npm_package_mocha_opts ./",
+    "coverage:badge": "badge-gen -d ./.config/badges/coverage",
+    "test:debug": "cd test && mocha $npm_package_mocha_opts --debug-brk --inspect",
+    "test": "cd test && mocha $npm_package_mocha_opts ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielkalen/icon.font.git"
+  },
+  "author": "danielkalen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielkalen/icon.font/issues"
+  },
+  "homepage": "https://github.com/danielkalen/icon.font#readme",
+  "devDependencies": {
+    "badge-gen": "^1.0.1",
+    "bluebird": "^3.5.0",
+    "chai": "^3.5.0",
+    "coffee-script": "^1.12.4",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "chalk": "^1.1.3",
+    "coffee-script": "^1.12.4",
+    "commander": "^2.9.0",
+    "electroshot": "git+https://github.com/danielkalen/electroshot.git",
+    "execa": "^0.6.0",
+    "fs-extra": "^2.0.0",
+    "smart-extend": "^1.3.2",
+    "webfonts-generator": "^0.4.0"
+  }
+}

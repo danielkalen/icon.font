@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{fontName}}</title>
+	<style>
+		body {
+			font-family: sans-serif;
+			margin: 0;
+			padding: 10px 20px;
+			background: white;
+		}
+		.table {
+			display: table;
+			border-spacing: 0;
+		}
+		.preview {
+			display: table-row;
+			line-height: 2em;
+		}
+
+		td {
+			border: 1px solid #555;
+			padding: 2px 6px;
+		}
+		.preview__icon {
+			width: 52px;
+			max-width: 52px;
+			font-size: 18px;
+			text-align: center;
+		}
+		.preview__code {
+			box-sizing: border-box;
+			text-align: center;
+		}
+
+		.preview__code__label {
+			opacity: 0.3;
+			font-size: 14px;
+		}
+
+		{{{styles}}}
+	</style>
+</head>
+<body>
+	<h1>{{fontName}}</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th></th><th>HTML</th><th>CSS</th><th>Filename</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each iconValues}}
+			<tr class="preview">
+				<td class="preview__icon">
+					<span class="{{../baseClassname}}">{{this.char}}</span>
+				</td>
+				<td class="preview__code">
+					{{this.html}}
+				</td>
+				<td class="preview__code">
+					{{this.css}}
+				</td>
+				<td>{{@key}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</body>
+</html>
