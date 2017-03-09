@@ -1,7 +1,7 @@
 # icon.font
 [![Build Status](https://travis-ci.org/danielkalen/icon.font.svg?branch=master)](https://travis-ci.org/danielkalen/icon.font)
 [![Coverage](.config/badges/coverage-node.png?raw=true)](https://github.com/danielkalen/icon.font)
-[![Code Climate](https://codeclimate.com/repos/57c332508cc944028900237a/badges/6b3dda1443fd085a1d3c/gpa.svg)](https://codeclimate.com/repos/57c332508cc944028900237a/feed)
+[![Code Climate](https://codeclimate.com/github/danielkalen/icon.font/badges/gpa.svg)](https://codeclimate.com/github/danielkalen/icon.font)
 [![NPM](https://img.shields.io/npm/v/icon.font.svg)](https://npmjs.com/package/icon.font)
 
 #### Features:
