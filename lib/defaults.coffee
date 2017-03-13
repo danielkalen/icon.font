@@ -5,6 +5,7 @@ module.exports =
 	'src': path.resolve('src')
 	'dest': path.resolve('dest')
 	'configFile': path.resolve('src','_icon-config.json')
+	'previewSize': 18
 	'saveConfig': true
 	'image': true
 	'html': true

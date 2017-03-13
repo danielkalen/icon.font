@@ -8,9 +8,10 @@ path = require 'path'
 fs = Promise.promisifyAll require 'fs-extra'
 
 module.exports = (settings)->
-	settings = extend.clone(defaults, settings)
+	settings = extend.deep.clone(defaults, settings)
 	settings.html = settings.css = true if settings.image
 	settings.configFile = path.resolve(settings.src,'_icon-config.json') if settings.src isnt defaults.src and settings.configFile is defaults.configFile
+	settings.templateOptions.previewSize = settings.previewSize
 
 	fs.readdirAsync(settings.src).then (files)->
 		settings.allFiles = files

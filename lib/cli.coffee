@@ -13,6 +13,7 @@ program
 	.option '-f --fontName [name]', "Name to assign to the generated icon font [default: #{chalk.dim defaults.fontName}]"
 	.option '-c --configFile [path]', "Path of the file containing the icon config [default: #{chalk.dim defaults.configFile}]"
 	.option '-t --type [path]', "Font file types to generate (specifiy multiple times for multiple types) [default: #{chalk.dim defaults.types}]", ((type, types)->types.push(type); types), []
+	.option '-p --previewSize [px size]', "Normalize icons by scaling them to the height of the highest icon [default: #{chalk.dim defaults.previewSize}]"
 	.option '-S --silent', "Normalize icons by scaling them to the height of the highest icon [default: #{chalk.dim 'false'}]"
 	.option '--no-css', "Avoid generating a css file [default: #{chalk.dim defaults.css}]"
 	.option '--no-html', "Avoid generating an html preview [default: #{chalk.dim defaults.html}]"
