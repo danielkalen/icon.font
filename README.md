@@ -1,6 +1,6 @@
 # icon.font
 [![Build Status](https://travis-ci.org/danielkalen/icon.font.svg?branch=master)](https://travis-ci.org/danielkalen/icon.font)
-[![Coverage](.config/badges/coverage-node.png?raw=true)](https://github.com/danielkalen/icon.font)
+[![Coverage](.config/badges/coverage.png?raw=true)](https://github.com/danielkalen/icon.font)
 [![Code Climate](https://codeclimate.com/github/danielkalen/icon.font/badges/gpa.svg)](https://codeclimate.com/github/danielkalen/icon.font)
 [![NPM](https://img.shields.io/npm/v/icon.font.svg)](https://npmjs.com/package/icon.font)
 
