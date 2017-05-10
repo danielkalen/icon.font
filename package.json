@@ -6,7 +6,7 @@
   "bin": {
     "icon.font": "./bin"
   },
-  "mocha_opts": "-u tdd --compilers coffee:coffee-script/register --slow 3000 --timeout 8000",
+  "mocha_opts": "-u tdd --compilers coffee:coffee-register --slow 3000 --timeout 8000",
   "scripts": {
     "build": "npm run compile && npm run prependbin && npm run makeexec",
     "compile": "npm run compile:module && npm run compile:bin",
@@ -40,7 +40,7 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "chalk": "^1.1.3",
-    "coffee-script": "^1.12.4",
+    "coffee-register": "0.0.1",
     "commander": "^2.9.0",
     "electroshot": "git+https://github.com/danielkalen/electroshot.git",
     "execa": "^0.6.0",

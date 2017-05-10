@@ -1,2 +1,2 @@
-require('coffee-script/register');
+require('coffee-register');
 module.exports = require('./lib/icon.font');
