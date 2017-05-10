@@ -1,6 +1,6 @@
 Promise = require 'bluebird'
 # Promise.config longStackTraces:true
-fs = Promise.promisifyAll require 'fs-extra'
+fs = require 'fs-jetpack'
 path = require 'path'
 chalk = require 'chalk'
 mocha = require 'mocha'
@@ -21,7 +21,7 @@ suite "icon.font", ()->
 
 
 	test "Can be invoked without arguments and will use default options to generate fonts", ()->
-		iconFont().then ()-> fs.readdirAsync('dest').then (files)->
+		iconFont().then ()-> fs.listAsync('dest').then (files)->
 			files.splice(files.indexOf('.DS_Store'), 1) if files.includes('.DS_Store')
 			expect(files).to.eql [
 				'iconfont-500x0.png'
@@ -35,7 +35,7 @@ suite "icon.font", ()->
 			]
 
 	test "HTML and CSS files can be omitted", ()->
-		iconFont(outputHtml:false, outputCss:false).then ()-> fs.readdirAsync('dest').then (files)->
+		iconFont(outputHtml:false, outputCss:false).then ()-> fs.listAsync('dest').then (files)->
 			files.splice(files.indexOf('.DS_Store'), 1) if files.includes('.DS_Store')
 			expect(files).to.eql [
 				'iconfont-500x0.png'
@@ -48,7 +48,7 @@ suite "icon.font", ()->
 	
 
 	test "Image preview file can be omitted", ()->
-		iconFont(image:false).then ()-> fs.readdirAsync('dest').then (files)->
+		iconFont(image:false).then ()-> fs.listAsync('dest').then (files)->
 			files.splice(files.indexOf('.DS_Store'), 1) if files.includes('.DS_Store')
 			expect(files).to.eql [
 				'iconfont.css'
@@ -62,7 +62,7 @@ suite "icon.font", ()->
 
 
 	test "A custom name can be set for the generated font", ()->
-		iconFont(fontName:'myFont').then ()-> fs.readdirAsync('dest').then (files)->
+		iconFont(fontName:'myFont').then ()-> fs.listAsync('dest').then (files)->
 			files.splice(files.indexOf('.DS_Store'), 1) if files.includes('.DS_Store')
 			expect(files).to.eql [
 				'myFont-500x0.png'
@@ -77,7 +77,7 @@ suite "icon.font", ()->
 	
 
 	test "Only specific font types can be generated if specified, but svg will never be omitted", ()->
-		iconFont(types:['woff','ttf'], image:false).then ()-> fs.readdirAsync('dest').then (files)->
+		iconFont(types:['woff','ttf'], image:false).then ()-> fs.listAsync('dest').then (files)->
 			files.splice(files.indexOf('.DS_Store'), 1) if files.includes('.DS_Store')
 			expect(files).to.eql [
 				'iconfont.css'
@@ -89,8 +89,8 @@ suite "icon.font", ()->
 
 
 	test "A specific src/dest can be specified", ()->
-		fs.copyAsync('samples', 'src2').then ()->
-			iconFont(src:'src2', dest:'dest2', image:false).then ()-> fs.readdirAsync('dest2').then (files)->
+		fs.copyAsync('samples', 'src2', overwrite:true).then ()->
+			iconFont(src:'src2', dest:'dest2', image:false).then ()-> fs.listAsync('dest2').then (files)->
 				files.splice(files.indexOf('.DS_Store'), 1) if files.includes('.DS_Store')
 				expect(files).to.eql [
 					'iconfont.css'
@@ -109,10 +109,10 @@ suite "icon.font", ()->
 
 
 	test "A config file will be created for later reuse in the src dir", ()->
-		fs.readdirAsync('src').then (files)->
+		fs.listAsync('src').then (files)->
 			expect(files).not.to.contain('_icon-config.json')
 			
-			iconFont().then ()-> fs.readdirAsync('src').then (files)->
+			iconFont().then ()-> fs.listAsync('src').then (files)->
 				expect(files).to.contain('_icon-config.json')
 				json = require './src/_icon-config.json'
 

@@ -1,7 +1,7 @@
 Promise = require 'bluebird'
 extend = require 'smart-extend'
 path = require 'path'
-fs = Promise.promisifyAll require 'fs-extra'
+fs = require 'fs-jetpack'
 
 module.exports = (settings)->
 	getConfigFile(settings.configFile).then (config)->
@@ -17,7 +17,7 @@ module.exports = (settings)->
 		if not settings.saveConfig
 			return config
 		else
-			fs.outputFileAsync(settings.configFile, JSON.stringify(config, null, 2))
+			fs.writeAsync(settings.configFile, JSON.stringify(config, null, 2))
 				.then ()-> return config
 
 
@@ -26,7 +26,7 @@ module.exports = (settings)->
 
 
 getConfigFile = (configFilePath)->
-	fs.readFileAsync(configFilePath, encoding:'utf8')
+	fs.readAsync(configFilePath)
 		.then (contents)-> JSON.parse(contents)
 		.catch ()-> {lastCodepoint:null, icons:{}}
 

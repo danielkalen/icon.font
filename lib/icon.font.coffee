@@ -5,7 +5,7 @@ defaults = require './defaults'
 iconBuilder = Promise.promisify require 'webfonts-generator'
 extend = require 'smart-extend'
 path = require 'path'
-fs = Promise.promisifyAll require 'fs-extra'
+fs = require 'fs-jetpack'
 
 module.exports = (settings)->
 	settings = extend.deep.notDeep('types').clone(defaults, settings)
@@ -13,7 +13,7 @@ module.exports = (settings)->
 	settings.configFile = path.resolve(settings.src,'_icon-config.json') if settings.src isnt defaults.src and settings.configFile is defaults.configFile
 	settings.templateOptions.previewSize = settings.previewSize
 
-	fs.readdirAsync(settings.src).then (files)->
+	fs.listAsync(settings.src).then (files)->
 		settings.allFiles = files
 		settings.iconFiles = files
 			.filter (file)-> not file.startsWith('.') and file.endsWith('.svg')
