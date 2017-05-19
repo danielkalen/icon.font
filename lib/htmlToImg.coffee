@@ -10,13 +10,13 @@ ERR = chalk.bgRed.white 'ERR'
 module.exports = (settings)-> if not settings.image then Promise.resolve() else
 	htmlFile = path.join settings.dest,"#{settings.fontName}.html"
 
-	fs.inspectAsync(electroshot)
-		.then ()->
-			exec(electroshot, [htmlFile, "500x", "--selector", "'.table'", "--out", settings.dest, "--format", "png"])
-				.catch (err)-> console.error "#{ERR} Failed to generate image preview, skipping..."
+	Promise.resolve()
+		.then ()-> fs.inspectAsync(electroshot)
+		.tapCatch ()-> console.error "#{ERR} Failed to generate image preview because 'electroshot' dependency couldn't be found"
+		.then ()-> exec(electroshot, [htmlFile, "500x", "--selector", "'.table'", "--out", settings.dest, "--format", "png"])
+		.tapCatch (err)-> console.error err
+		.catch (err)-> console.error "#{ERR} Failed to generate image preview, skipping..."
 		
-		.catch ()->
-			console.error "#{ERR} Failed to generate image preview because 'electroshot' dependency couldn't be found, skipping..."
 
 
 
