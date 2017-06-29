@@ -8,6 +8,7 @@
   },
   "mocha_opts": "-u tdd --compilers coffee:coffee-register --slow 3000 --timeout 8000",
   "scripts": {
+    "prepublishOnly": "npm run test:travis",
     "build": "npm run compile && npm run prependbin && npm run makeexec",
     "compile": "npm run compile:module && npm run compile:bin",
     "compile:module": "foreach -g 'lib/*.coffee' -x 'cat {{path}} | coffee -c -s -b > forCoverage/{{name}}.js' && cp -r lib/templates forCoverage/templates",
