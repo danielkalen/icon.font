@@ -1,6 +1,6 @@
 {
   "name": "icon.font",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Generates webfonts from individual svg icons with persistent config and mapping previews",
   "main": "index.js",
   "bin": {
