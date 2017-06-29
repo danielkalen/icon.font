@@ -18,7 +18,8 @@
     "coverage:run": "cd test && forCoverage=true istanbul cover --dir coverage ../node_modules/mocha/bin/_mocha -- $npm_package_mocha_opts ./",
     "coverage:badge": "badge-gen -d ./.config/badges/coverage",
     "test:debug": "cd test && mocha $npm_package_mocha_opts --debug-brk --inspect",
-    "test": "cd test && mocha $npm_package_mocha_opts ./"
+    "test:travis": "cd test && mocha $npm_package_mocha_opts ./",
+    "test": "cd test && mocha $npm_package_mocha_opts --bail ./"
   },
   "repository": {
     "type": "git",

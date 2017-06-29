@@ -3,7 +3,7 @@ node_js:
   - "6.1.0"
   # - "5.0.0"
   # - "4.0.0"
-script: npm test
+script: npm run test:travis
 before_script:
   # Generate a virtual framebuffer X server to collect Electron windows
   - export DISPLAY=:99.0
