@@ -56,14 +56,15 @@ require('icon.font')({ // Default options
     normalize: true,
     silent: true,
     types: ['woff2', 'woff', 'ttf', 'eot', 'svg'],
-    templateOptions:
+    templateOptions: {
         classPrefix: '_icon-',
         baseSelector: '._icon',
         baseClassname: '_icon',
+    },
     codepointRanges: [
-        [97,122] # a-z
-        [65,90] # A-Z
-        [48,57] # 0-9
+        [97,122], // a-z
+        [65,90], // A-Z
+        [48,57], // 0-9
         [0xe001, Infinity]
     ]
 }).then(function(){
