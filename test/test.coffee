@@ -114,14 +114,33 @@ suite "icon.font", ()->
 			
 			iconFont().then ()-> fs.listAsync('src').then (files)->
 				expect(files).to.contain('_icon-config.json')
-				json = require './src/_icon-config.json'
+				config = require './src/_icon-config.json'
 
-				expect(typeof json.lastCodepoint).to.equal 'number'
-				expect(typeof json.icons).to.equal 'object'
-				expect(json.icons['book']).to.equal 97
-				expect(json.icons['notepad']).to.equal 98
-				expect(json.icons['overview']).to.equal 99
-				expect(json.icons['review']).to.equal 100
+				expect(typeof config.lastCodepoint).to.equal 'number'
+				expect(typeof config.icons).to.equal 'object'
+				expect(config.icons['book']).to.equal 97
+				expect(config.icons['notepad']).to.equal 98
+				expect(config.icons['overview']).to.equal 99
+				expect(config.icons['review']).to.equal 100
+
+
+	test "Config files can contain mappings to char strings instead of code points", ()->
+		Promise.resolve()
+			.then ()-> fs.listAsync 'src'
+			.then (files)-> expect(files).not.to.contain('_icon-config.json')
+			.then ()-> fs.writeAsync 'src/_icon-config.json', {icons:'book':'c', 'review':'e'}
+			
+			.then iconFont
+			.then ()-> fs.listAsync 'src'
+			.then (files)-> expect(files).to.contain('_icon-config.json')
+			.then ()-> fs.readAsync 'src/_icon-config.json', 'json'
+			.then (config)->
+				expect(typeof config.lastCodepoint).to.equal 'number'
+				expect(typeof config.icons).to.equal 'object'
+				expect(config.icons['book']).to.equal 99
+				expect(config.icons['review']).to.equal 101
+				expect(config.icons['notepad']).to.equal 102
+				expect(config.icons['overview']).to.equal 103
 
 
 	# test "", ()->
