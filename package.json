@@ -20,7 +20,7 @@
     "coverage:badge": "badge-gen -d ./.config/badges/coverage",
     "test:debug": "cd test && mocha $npm_package_mocha_opts --debug-brk --inspect",
     "test:travis": "cd test && mocha $npm_package_mocha_opts ./",
-    "test": "cd test && mocha $npm_package_mocha_opts --bail ./"
+    "test": "cd test && mocha -u tdd --compilers coffee:coffee-register --slow 3000 --timeout 8000 --bail ./"
   },
   "repository": {
     "type": "git",
@@ -44,10 +44,11 @@
     "chalk": "^1.1.3",
     "coffee-register": "0.0.1",
     "commander": "^2.9.0",
-    "electroshot": "1.3.0",
     "execa": "^0.6.0",
     "fs-jetpack": "^2.2.0",
+    "pageres": "^6.2.3",
     "promise-break": "^0.1.2",
+    "puppeteer": "^11.0.0",
     "smart-extend": "^1.3.2",
     "webfonts-generator": "^0.4.0"
   }

@@ -24,7 +24,7 @@ suite "icon.font", ()->
 		iconFont().then ()-> fs.listAsync('dest').then (files)->
 			files.splice(files.indexOf('.DS_Store'), 1) if files.includes('.DS_Store')
 			expect(files).to.eql [
-				'iconfont-500x0.png'
+				'iconfont-1000x1000.png'
 				'iconfont.css'
 				'iconfont.eot'
 				'iconfont.html'
@@ -38,7 +38,7 @@ suite "icon.font", ()->
 		iconFont(outputHtml:false, outputCss:false).then ()-> fs.listAsync('dest').then (files)->
 			files.splice(files.indexOf('.DS_Store'), 1) if files.includes('.DS_Store')
 			expect(files).to.eql [
-				'iconfont-500x0.png'
+				'iconfont-1000x1000.png'
 				'iconfont.eot'
 				'iconfont.svg'
 				'iconfont.ttf'
@@ -65,7 +65,7 @@ suite "icon.font", ()->
 		iconFont(fontName:'myFont').then ()-> fs.listAsync('dest').then (files)->
 			files.splice(files.indexOf('.DS_Store'), 1) if files.includes('.DS_Store')
 			expect(files).to.eql [
-				'myFont-500x0.png'
+				'myFont-1000x1000.png'
 				'myFont.css'
 				'myFont.eot'
 				'myFont.html'
